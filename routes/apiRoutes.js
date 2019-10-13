@@ -126,22 +126,24 @@ module.exports = function (app) {
         req.session.userId = userData.userID;
         req.session.userName = userData.userName;
         req.session.userRole = userData.userRole;
-        let user = {
-          userName: req.session.userName,
-          userId: req.session.userId
-        };
-        if (req.session.userRole === "admin") {
-          res.render("admin", {
-            msg: "Welcome Admin!",
-            user: user
-          });
-        } else {
-          res.render("index", {
-            msg: "Welcome to H-town Brews!",
-            msgTwo: "Search for beers to rate and review",
-            user: user
-          });
-        }
+        req.session.save(() => {
+          let user = {
+            userName: req.session.userName,
+            userId: req.session.userId
+          };
+          if (req.session.userRole === "admin") {
+            res.render("admin", {
+              msg: "Welcome Admin!",
+              user: user
+            });
+          } else {
+            res.render("index", {
+              msg: "Welcome to H-town Brews!",
+              msgTwo: "Search for beers to rate and review",
+              user: user
+            });
+          }
+        });
       } else {
         res.sendStatus("404");
       }
