@@ -1,0 +1,86 @@
+<div class="content">
+    <div class="section no-pad-bot" id="index-banner">
+        {{!-- Search Bar --}}
+        <div class="container section-user-info section-main">
+            <div class="row">
+                <div class="row vanity" style="padding: 1rem">
+                    <div class="col s12 m3">
+                        <div class="profile-image-zone"></div>
+                        <div class="input-field admin-input">
+                            <input type="text" id="profile-url">
+                            <label for="profile-url">Profile Url</label>
+                            <input type="submit" value="Change" class="btn btn-small profile-btn admin-btn">
+                        </div>
+                    </div>
+                    <div class="col m5 profile-info">
+                        <p> You have been a user since: {{userDate}}</p>
+                        <p>Total number of beers reviewed: {{data.length}} </p>
+                        <p>Badges: </p>
+                    </div>
+                    <div class=" col m3 s8">
+                        <div class="row valign-wrapper">
+                            <div class=" col s11 landing-search input-field">
+                                <input type="text" id="autocomplete-input-small"
+                                    class="autocomplete white-text brown darken-1">
+                                <label class="light-txt-input center" for="autocomplete-input">Find more beers</label>
+                            </div>
+                            <button id="re-search"
+                                class="search-btn col m1 s2 waves-effect waves-light brown center btn"><i
+                                    class="material-icons right">search</i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="container section-main">
+
+            <div class="row center" style="padding: 1rem">
+                <h3>Review History</h3>
+                <h3>....just in case you can't remember</h3>
+            </div>
+            {{!-- Beers Reviews --}}
+            {{#each data}}
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col s12 m10 offset-m1">
+                            <div class="card horizontal" style="padding-left: 1rem">
+                                <h5 class="header">{{beer.beer_name}}</h5>
+                                <div class="card-stacked">
+                                    <div class="card-content row user-reviews">
+                                        <div class="col s9">
+                                            <p>Date: {{createdAt}}</p>
+                                            <p>Rating: {{reviewRating}}</p>
+                                            <p> {{reviewParagraph}}</p>
+                                        </div>
+                                        <div class="col s3">
+                                            <a class="btn btn-small waves-effect waves-light brown darken-1 edit-review" data-reviewid="{{id}}">Edit Review</a>
+                                            <a class="btn btn-small waves-effect waves-light brown darken-1 delete-review" data-reviewid="{{id}}">Delete Review</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+
+        </div>
+    </div>
+
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="../../bin/materialize.js"></script>
+    <script src="js/init.js"></script>
+
+
+
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/profile.js"></script>

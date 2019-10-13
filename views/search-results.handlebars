@@ -1,0 +1,139 @@
+<div class="content">
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            {{!-- Search Bar --}}
+            <div class="row">
+                <div class=" col m4 s8 offset-m8 offset-s2">
+                    <div class="row valign-wrapper">
+                        <div class=" col s11 landing-search input-field">
+                            <input type="text" id="autocomplete-input-small"
+                                class="autocomplete white-text brown darken-1">
+                            <label class="light-txt-input center" for="autocomplete-input">Search</label>
+                        </div>
+                        <button id="re-search" class="search-btn col m1 s2 waves-effect waves-light brown center btn"><i
+                                class="material-icons right">search</i></button>
+                    </div>
+                </div>
+            </div>
+            {{!--Review Modal--}}
+            <div class="home"></div>
+            <div id="#reviewmodal" class="modal reviewmodal">
+                <h5 class="reviewmodal-close">&#10005;</h5>
+                <div class="reviewmodal-content center">
+                    <h4>Write your Review!</h4>
+                    <br>
+                    <form action="#">
+                        <div class="showcase">
+                            <div class="rating-system4">
+                                <h3 id="ratingheader">Select your rating</h3>
+                                <input type="radio" name='rate4' id="star5_4" />
+                                <label class="ratinglabel" for="star5_4" data-star="5"></label>
+
+                                <input type="radio" name='rate4' id="star4_4" />
+                                <label class="ratinglabel" for="star4_4" data-star="4"></label>
+
+                                <input type="radio" name='rate4' id="star3_4" />
+                                <label class="ratinglabel" for="star3_4" data-star="3"></label>
+
+                                <input type="radio" name='rate4' id="star2_4" />
+                                <label class="ratinglabel" for="star2_4" data-star="2"></label>
+
+                                <input type="radio" name='rate4' id="star1_4" />
+                                <label class="ratinglabel" for="star1_4" data-star="1"></label>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="userreview" class="materialize-textarea"></textarea>
+                                <label for="userreview">Review</label>
+                            </div>
+                        </div>
+                        <input type="submit" value="Review" class="btn btn-large reviewmodal-submit">
+                    </form>
+                </div>
+            </div>
+
+            {{!-- Search Results --}}
+            {{#each data}}
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col s12 m10" id="beerresultcard">
+                            <h3 class="header">{{beer.beer_name}}</h3>
+                            <div class="card horizontal">
+                                <div class="card-image">
+                                    <img class="search-result-img" src="/img/beer-pint-hazy-light.png">
+                                </div>
+                                <div class="card-stacked">
+                                    <div class="card-content">
+                                        <p><strong>Style: </strong>{{beer.beer_type}}</p>
+                                        <p><strong>Description: </strong>{{beer.beer_description}}</p>
+                                        <p><strong>Average Rating: </strong>{{beer.avg_rating}}</p>
+                                    </div>
+                                    <div class="card-action row result-body">
+
+                                        <ul class="collapsible review-collapsible">
+                                            <li>
+                                                <a class="reviews-header collapsible-header col s8" data-id="{{beer.id}}">Read Reviews</a>
+                                                <a class="col s3" href="#" id="writereview" data-id="{{beer.id}}">
+                                                    Write a Review
+                                                </a>
+                                                <div class="collapsible-body">
+                                                    {{#unless reviews}}
+                                                    <p>This beer hasn't been reviewed yet</p>
+                                                    {{/unless}}
+                                                    {{#each reviews}}
+                                                    <div class="row">
+                                                        <br>
+                                                        <div class="col s12">
+                                                            <img src={{user.profileUrl}} alt="profile-image" class="smallUserImage">
+                                                            <div>{{user.userName}} gives this beer {{reviewRating}} out of 5</div>
+                                                            <div class="beer-rev-info">
+                                                                <div class="beer-rev-body" data-id={{beer.id}}>
+                                                                    <p>They say:</p>
+                                                                        <p>{{reviewParagraph}}<br>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{/each}}
+                                                </div>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- Side-info --}}
+                        <div class="col hide-in-small s1 m4">stuff</div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+            {{#unless data}}
+            <h3>No Results Found</h3>
+            {{/unless}}
+        </div>
+    </div>
+
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="../../bin/materialize.js"></script>
+    <script src="js/init.js"></script>
+
+
+
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/results.js"></script>

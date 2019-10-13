@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
+</head>
+<title>Home Page</title>
+</head>
+
+<body>
+  <nav class="brown darken-2" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">H-town Brews</a>
+      <ul class="right hide-on-med-and-down">
+        {{#if user}}
+        <li id="user-info" data-userId={{user.userId}}>
+          Welcome {{user.userName}}
+        </li>
+        <li id="profile-button">
+          <a href="/user/{{user.userName}}">Profile</a>
+        </li>
+        <li id="logout-button">
+          <a href="/logout">Logout</a>
+        </li>
+        {{/if}}
+        {{#unless user}}
+        <li><a id="#logAccount" href="#login" class="login-modal-trigger modal-trigger waves-effect waves-light btn navbar-btn"
+            tabindex="-1">Login</a></li>
+        <li><a class="waves-effect waves-light btn navbar-btn" href="/signup">Register</a></li>
+        {{/unless}}
+      </ul>
+
+      {{#if user}}
+      <a href="/logout" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">close</i></a>
+      <a href="/user/{{user.userName}}" data-target="nav-mobile" class="sidenav-trigger mobile-profile"><i class="material-icons">person_pin</i></a>      
+      {{/if}}
+      {{#unless user}}
+      <a href="#login" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">person</i></a>
+      {{/unless}}
+    </div>
+  </nav>
+  <div class="home"></div>
+  {{!-- Login Modal --}}
+  <div id="#login" class="modal login-modal">
+    <h5 class="modal-close">&#10005;</h5>
+    <div class="modal-content center">
+      <h4>Login</h4>
+      <br>
+      <form action="#">
+        <div class="input-field">
+          <i class="material-icons prefix">person</i>
+          <input type="text" id="name">
+          <label for="name">Username</label>
+        </div>
+        <br>
+        <div class="input-field">
+          <i class="material-icons prefix">lock</i>
+          <input type="password" id="pass">
+          <label for="pass">Password</label>
+        </div>
+        <input type="submit" value="Login" class="btn btn-large modal-login signupbutton">
+      </form>
+    </div>
+  </div>
+
+  {{{body}}}
+
+  <footer class="page-footer brown darken-2">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <h5 class="white-text">About Us</h5>
+          <p class="grey-text text-lighten-4">Welcome to H-Town Brews! We provide you with the data to make the right beer selection. Explore our beers and checkout their ratings and other peoples reviews. Create an account so you can also rate and review beers. Thanks for visiting our site!</p>
+          <div class="footer-copyright">@Copyright</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+
+</html>
