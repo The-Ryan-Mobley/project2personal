@@ -10,6 +10,7 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 // Middleware
+app.set("trust proxy", 1);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
