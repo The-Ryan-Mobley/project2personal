@@ -126,9 +126,7 @@ module.exports = function (app) {
         req.session.userId = userData.userID;
         req.session.userName = userData.userName;
         req.session.userRole = userData.userRole;
-        req.session.save(() => {
-          res.sendStatus("200");
-        });
+        res.sendStatus("200");
       } else {
         res.sendStatus("404");
       }
