@@ -13,7 +13,9 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
-app.use(session({ secret: "keyboard cat", cookie: { maxAge: 60000 } }));
+app.use(
+  session({ secret: "keyboard cat", resave: false, cookie: { maxAge: 60000 } })
+);
 
 // Handlebars
 app.engine(
