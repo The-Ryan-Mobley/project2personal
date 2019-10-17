@@ -1,5 +1,5 @@
 # htown brews
-url: http://hidden-hollows-66405.herokuapp.com/
+url: https://ancient-beach-07931.herokuapp.com/
 ## premise
 This app will allow users to browse,rate, and review a variety of local houston craft beers.
 ### site layout
